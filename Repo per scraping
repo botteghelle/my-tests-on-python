@@ -1,0 +1,26 @@
+
+import re 
+from bs4 import BeautifulSoup
+import urllib3
+
+import requests
+
+http = urllib3.PoolManager()
+
+url = "https://eiopa.europa.eu/regulation-supervision/insurance/solvency-ii-technical-information/risk-free-interest-rate-term-structures"
+response = http.request('GET', url)
+soup = BeautifulSoup(response.data)
+href_tags = soup.find_all(href=True)
+url_81=href_tags[81].get('href')
+print(href_tags[81])
+#r = requests.get(href_tags[81], allow_redirects=True)
+
+resp = requests.get(url+url_81)
+
+
+
+
+import wget
+
+res = wget.download("https://eiopa.europa.eu/regulation-supervision/insurance/solvency-ii-technical-information/risk-free-interest-rate-term-structures/Publications/Standards/EIOPA_RFR_20190430.zip")
+
