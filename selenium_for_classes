@@ -1,0 +1,35 @@
+__author__ = 'rahul'
+global elements 
+global counter
+import unittest
+from selenium import webdriver
+from selenium.webdriver.support.select import Select
+ 
+ 
+class Drpdowm(unittest.TestCase):
+ 
+    def setUp(self):
+        self.driver = webdriver.Firefox()
+ 
+    def test_drpdown(self):
+        driver = self.driver
+        driver.maximize_window()
+        driver.get('http://www.toolsqa.com/automation-practice-form/')
+ 
+#        s1=Select(driver.find_element_by_id('continents'))
+        elements = driver.find_element_by_class_name('btn')
+ 
+#        for opt in s1.options:
+#            s1.select_by_visible_text('Europe')
+        for Y in elements:
+            print (Y)
+ 
+    def tearDown(self):
+        self.driver.quit()
+ 
+ 
+ 
+ 
+ 
+if __name__ == '__main__':
+    unittest.main()
