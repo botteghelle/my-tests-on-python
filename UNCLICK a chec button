@@ -1,0 +1,22 @@
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+driver = webdriver.Firefox()
+driver.get("https://data.oecd.org/price/inflation-forecast.htm#indicator-chart")
+print(driver.title)
+
+global the_classes
+ids = driver.find_elements_by_xpath('//*[@id="indicator-chart"]/div[3]/div[4]/p')  ## Emanuele : I copied the Xpath as suggested in https://dev.to/endtest/a-practical-guide-for-finding-elements-with-selenium-4djf
+#driver.find_elements_by_xpath('//*[@id="indicator-chart"]/div[3]/div[4]/p')
+#for ii in ids:
+#    print (ii.get_attribute('id'))    # id name as string
+driver.find_element_by_xpath('//*[@id="indicator-chart"]/div[3]/div[4]/p').click()	
+
+#the_classes = driver.find_element_by_partial_link_text("") ##this giving something ! 
+the_classes =  driver.find_element_by_class_name('use-latest-data-label')
+for ii in the_classes:
+    print (ii.get_attribute('id'))    # id name as string
+
+#for yy in the_classes:
+#    print (ii.get_attribute('id'))    # id name as string
+
+#driver.find_element_by_xpath('//*[@id="indicator-chart"]/div[3]/div[4]/p').click()
