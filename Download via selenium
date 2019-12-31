@@ -1,0 +1,48 @@
+
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+
+#creation of profile 
+fp = webdriver.FirefoxProfile()
+#fp.set_preference ("download.dir" ,  "C:\\Users\\Emanuele NUZZO\\Desktop\\Application SCR python\\")  ## last version
+fp.set_preference("browser.download.manager.showWhenStarting", False)
+fp.set_preference("browser.download.manager.showAlertOnComplete", False)
+fp.set_preference("browser.helperApps.neverAsk.saveToDisk", "text/csv")
+fp.set_preference("browser.download.dir", 'C:\\Users\\Emanuele NUZZO\\Desktop\\Application SCR python\\')
+
+		
+#fp = webdriver.FirefoxProfile()
+#fp.set_preference("browser.download.folderList",2)
+#fp.set_preference("browser.download.dir", )
+#fp.set_preference("browser.download.manager.showWhenStarting",False)
+#fp.set_preference("browser.helperApps.neverAsk.saveToDisk","text/csv")		
+
+
+driver = webdriver.Firefox(firefox_profile=fp)
+
+driver.get("https://data.oecd.org/price/inflation-forecast.htm#indicator-chart")
+#print(driver.title)
+
+global the_classes
+ids = driver.find_elements_by_xpath('//*[@id="indicator-chart"]/div[3]/div[4]/p')  ## Emanuele : I copied the Xpath as suggested in https://dev.to/endtest/a-practical-guide-for-finding-elements-with-selenium-4djf
+driver.find_elements_by_xpath('//*[@id="indicator-chart"]/div[3]/div[4]/p')
+#for ii in ids:
+#    print (ii.get_attribute('id'))    # id name as string
+driver.find_element_by_xpath('//*[@id="indicator-chart"]/div[3]/div[4]/p').click()	
+
+#the_classes = driver.find_element_by_partial_link_text("") ##this giving something ! 
+the_classes =  driver.find_element_by_class_name('use-latest-data-label')
+#for ii in the_classes:
+#    print (ii.get_attribute('id'))    # id name as string
+
+#for yy in the_classes:
+#    print (ii.get_attribute('id'))    # id name as string
+
+#driver.find_element_by_xpath('//*[@id="indicator-chart"]/div[3]/div[4]/p').click()
+
+	
+driver.find_element_by_xpath('//*[@id="indicator-chart"]/div[1]/div/ul/li[3]/a').click()
+
+driver.find_element_by_xpath('//*[@id="indicator-chart"]/div[1]/ul/li[3]/div/a/span').click()  # button of menu 
+
+driver.find_element_by_xpath('/html/body/div[1]/main/div/main/div/div[3]/div[2]/div/div[1]/ul/li[3]/div/div/ul/li[1]/a').click() ## selecting csv
